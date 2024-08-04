@@ -157,16 +157,16 @@
                 "8" : ["x86_64", "aarch64"],
                 "9" : ["x86_64", "aarch64"]
             },
-            "size" : "15"
-        },
-        {
-            "name" : "minimal-uefi",
-            "releases" : {
-                "8" : ["x86_64", "aarch64"],
-                "9" : ["x86_64", "aarch64"]
-            },
             "size" : "15",
             "bootopts": "uefi"
+        },
+        {
+            "name" : "minimal-bios",
+            "releases" : {
+                "8" : ["x86_64"],
+                "9" : ["x86_64"]
+            },
+            "size" : "15"
         },
         {
             "name" : "desktop",
@@ -174,7 +174,8 @@
                 "8": ["x86_64", "aarch64"],
                 "9" : ["x86_64", "aarch64"]
             },
-            "size" : "20"
+            "size" : "20",
+            "bootopts": "uefi"
         },
         {
             "name" : "desktopencrypt",
@@ -182,7 +183,8 @@
                 "8" : ["x86_64", "aarch64"],
                 "9" : ["x86_64", "aarch64"]
             },
-            "size" : "20"
+            "size" : "20",
+            "bootopts": "uefi"
         },
         {
             "name" : "server",
@@ -190,7 +192,8 @@
                 "8" : ["x86_64", "aarch64"],
                 "9" : ["x86_64", "aarch64"]
             },
-            "size" : "9"
+            "size" : "9",
+            "bootopts": "uefi"
         },
         {
             "name" : "support",
@@ -198,7 +201,8 @@
                 "8" : ["x86_64", "aarch64"],
                 "9" : ["x86_64", "aarch64"]
             },
-            "size" : "36"
+            "size" : "36",
+            "bootopts": "uefi"
         }
     ],
     "renames" : []
