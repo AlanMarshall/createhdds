@@ -7,7 +7,7 @@ timezone --utc America/New_York
 clearpart --all
 autopart
 rootpw --plaintext weakpassword
-user --name=test --password=weakpassword --plaintext
+user --name=test --password=weakpassword --plaintext --group=wheel
 firstboot --enable
 poweroff
 text
