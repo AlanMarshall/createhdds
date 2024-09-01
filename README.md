@@ -57,6 +57,7 @@ Optional keys are:
 * `filesystem` - if set, this partition will *always* have this filesystem. If not set, the filesystem will be determined according to the image group's `filesystems` value (see below).
 * `label` - if set, this partition will have this label
 * `gpt-type` - if set, the partition will be of the type defined by the partition GUID.
+
 #### `writes`
 
 This key is **optional**. Its value is a list of dicts. Each dict represents a single file that should be created on one of the partitions in the image. There are exactly three required keys for the dict:
@@ -99,11 +100,11 @@ Whew! That was a lot of explanation, but it's not really a super-complicated con
 
 #### `releases`
 
-This key is **required**. It defines the releases and arches for which images are expected; thus it determines the number of images that will be expected for this group. The value is a dict. Each key in the dict represents a release; the value for each key is a list of the arches for which images should be built for that release. The keys should be integer digit strings. **Positive** values indicate absolute release numbers. **Negative** values are relative to whatever is the pending release at the time the images are created. So a release number `-1` means 'the release one before the pending release at the time the images are built'. So if the next Rocky Linux release will be Fedora 24 at the time the images are created, and one of the dict keys is `-1`, an image will be expected for Fedora 23.
+This key is **required**. It defines the releases and arches for which images are expected; thus it determines the number of images that will be expected for this group. The value is a dict. Each key in the dict represents a release; the value for each key is a list of the arches for which images should be built for that release. The keys should be **Positive** integer digit strings. A release number of `9` means Rocky Linux major version 9. The Rocky Linux minor version used to create the installed machine is controlled by the symlinks on the download server.
 
-The filename for a virt-install type image always includes the release number and arch it's built for - `disk_f(release)_(name)_(arch).img`.
+The filename for a virt-install type image always includes the release number and arch it's built for - `disk_rocky(release)_(name)_(arch).img`.
 
-Let's look at an example! Say the `name` is `minimal` and the `releases` dict is `{ "-1" : ["i686", "x86_64"], "-2" : ["x86_64"] }`. Three images will be expected, and the expected releases will be relevant to the pending release. Say the pending release is Fedora 24, the expected images will be `disk_f23_minimal_i686.img` (Fedora 23 for i686), `disk_f23_minimal_x86_64.img` (Fedora 23 for x86_64), and `disk_f22_minimal_x86_64.img` (Fedora 22 for x86_64). When time moves on and the next pending release is F25, images will be expected for Fedora 23 and Fedora 24, and the Fedora 22 images will be considered obsolete and deleted by cleanup modes of `createhdds`.
+Let's look at an example! Say the `name` is `minimal` and the `releases` dict is `{ "9" : ["x86_64"], "9" : ["x86_64"] }`. Two images will be expected with names `disk_rocky8_minimal_x86_64.img` (Rocky Linux 8 for x86_64) and `disk_rocky9_minimal_x86_64.img` (Rocky Linux 9 for x86_64). 
 
 As with the `guestfs` case, the single image group subcommand will have parameters to limit creation. So in our example, the `minimal` subcommand will have `--release` and `--arch` parameters, each allowing just a single value. For coding simplicity, passing `--arch` alone is ignored (this may be fixed later) and will just result in the 'expected' images being created. If `--release` is passed, only a single image will be created, for whatever release is specified; by default it will be the x86_64 image, you may pass `--arch (arch)` to build another arch instead.
 
