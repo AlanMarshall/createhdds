@@ -14,3 +14,6 @@ createrepo_c
 %end
 rootpw anaconda
 reboot
+
+%addon com_redhat_kdump --enable --reserve-mb='auto'
+%end

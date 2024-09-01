@@ -12,3 +12,6 @@ autopart
 rootpw anaconda
 reboot
 realm join --one-time-password=monkeys ipa001.test.openqa.rockylinux.org
+
+%addon com_redhat_kdump --enable --reserve-mb='auto'
+%end
