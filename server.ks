@@ -15,3 +15,6 @@ text
 @^server-product-environment
 plymouth-system-theme
 %end
+
+%addon com_redhat_kdump --enable --reserve-mb='auto'
+%end

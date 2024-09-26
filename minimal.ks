@@ -14,6 +14,9 @@ text
 @core
 %end
 
+%addon com_redhat_kdump --enable --reserve-mb='auto'
+%end
+
 %post
 touch $INSTALL_ROOT/home/home_preserved
 %end
